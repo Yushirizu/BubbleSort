@@ -1,57 +1,34 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-int main()
-{
-    int tab[20] = {78,40,84,12,86,22,42,44,82,77,96,54,70,59,37,95,4,49,63,27};
-    int passage = 0;
-    int permut, i, temp;
-
-
-
-
-    printf("UNSORTED TABLE\n");
-
-    for(i = 0; i<=19;i++){
-        printf("Value [%d] : %d\n",i,tab[i]);
+void bubble_sort(int array[], int size) {
+  int sorted = 0;
+  do {
+    sorted = 0;
+    for (int i = 0; i < size - 1; i++) {
+      if (array[i] > array[i + 1]) {
+        // Swap the elements
+        int temp = array[i];
+        array[i] = array[i + 1];
+        array[i + 1] = temp;
+        sorted = 1;
+      }
     }
-
-    /*We don't know the number of permutations*/
-
-    while(permut){
-
-        permut = 0;
-        passage ++;
-
-        /*We know we'll make 20 passes*/
-
-        for (i=0;i<20-passage;i++){
-
-        /*If the next value in the table is larger, we will exchange the values*/
-
-        if(tab[i] > tab [i+1]){
-
-            /*We're going to do a permutation so we set permutation to 1*/
-
-            permut=1;
-
-            /*we exchange our values*/
-
-            temp = tab[i];
-            tab[i] = tab[i+1];
-            tab[i+1] = temp;
-        }
-    }
+    size --;
+  } while (sorted);
 }
 
+int main() {
+  int array[] = {5, 1, 4, 2, 8};
+  int size = sizeof(array) / sizeof(array[0]);
 
+  bubble_sort(array, size);
 
+  printf("Sorted array\n");
 
+  for (int i = 0; i < size; i++) {
+    printf("%d ", array[i]);
+  }
+  printf("\n");
 
-    printf("SORT TABLE\n");
-
-    for(i = 0; i<=19;i++){
-        printf("Value  [%d] : %d\n",i,tab[i]);
-    }
-
+  return 0;
 }
